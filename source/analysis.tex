@@ -1,7 +1,157 @@
 \documentclass[main.tex]{subfiles}
 
 \begin{document}
+\subsection{Determining Spring Constants}
+By measuring spring displacements for various masses and for each of the 4 springs, we get the following:
 
-Hello.
+\begin{figure}[H]
 
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline 
+\multicolumn{4}{|c|}{Spring 1  $ \ \ \ \ \ \ \ \ \ \ $ Spring 2} \\
+\hline
+Mass/g & Position/cm & Mass/g & Position/cm \\
+\hline
+0 & 34.55 & 0 & 31.65 \\
+20 & 35.23 & 20 & 32.60 \\
+40 & 35.85 & 40 & 33.60 \\
+60 & 36.55 & 50 & 34.05 \\
+80 & 37.15 & 60 & 34.60 \\
+100 & 37.80 & 70 & 35.00 \\
+120 & 38.35 & 80 & 35.50 \\
+\hline
+\hline 
+\multicolumn{4}{|c|}{Spring 3  $ \ \ \ \ \ \ \ \ \ \ $ Spring 4} \\
+\hline
+\hline 
+0 & 31.50 & 0 & 33.30 \\
+20 & 31.60 & 20 & 36.75 \\
+100 & 32.05 & 40 & 40.15 \\
+120 & 32.15 & 50 & 41.70 \\
+150 & 32.35 & 60 & 43.45 \\
+200 & 32.75 & 70 & 45.00 \\
+250 & 33.00 & 80 & 46.85 \\
+\hline
+\end{tabular}
+\caption{Bottom position of hanging springs extended under masss}
+\end{figure}
+
+We also introduce an error in position measurement of $ \pm 0.2cm$. Error in weights is ignored, due to it being insignificant when compared to position measurements.
+
+To calculate the spring constant for each spring - $k_1$, $k_2$, $k_3$ and $k_4$ for springs 1,2,3,4, respectively, we use the least square method to find the slope of mass vs position. By Hooke's Law, $ k = -\frac{gm}{x} $, so the spring constant is simply slope times the gravitational constant. 
+
+The average masses in all four cases, respectively, are: 
+
+$$M_1 = 60g $$
+$$M_2 = 45.71g$$
+$$M_3 = 120g$$
+$$M_4 = 45.71g$$
+
+And the average position is:
+$$X_1 = 36.5 \pm 0.08 cm$$
+$$X_2 = 33.86 \pm 0.08 cm$$
+$$X_3 = 32.20 \pm 0.08 cm$$
+$$X_4 = 41.03 \pm 0.08 cm$$
+
+Since the error is $0.2cm$ for every measurement, the error on the average value of $7$ measurements is simply $\frac{\sqrt{7} \cdot 0.2}{7}cm = 0.08cm $. 
+
+Now, we just find the slope as in formula (reference). This gives us $ s_1 = 31.43g/cm, s_2 = 20.72g/cm, s_3 = 162.78g/cm$ and $s_4 = 5.95g/cm$.
+
+As far as error goes, in the formula $s = \frac{\sum (m_i-M)(x_i-X)}{\sum (x_i-X)^2} $ masses have no significant error, and the error on each $x_i-X$ is $\sqrt{0.2^2 + 0.08^2} = 0.22 $, so the total error on the numerator is  $$e_n = 0.22 \sqrt{\sum(m_i-M)^2}$$ The error on $ (x_i-X)^2$ is $\sqrt{2} \cdot 0.22 \cdot (x_i-X) = 0.31(x_i-X)$, so the error on denominator equals $$e_d = 0.31 \sqrt{\sum(x_i-X)^2}$$
+
+This gives us total error on the slope $ \%e = \sqrt{(\%e_n)^2 + (\%e_d)^2)} $. 
+
+Notice that, if by $d$ we denote the value of the denominator, then $e_d = 0.31 \sqrt{d} $, so 
+$$ \%e_d = \frac{0.31 \sqrt{d}}{d} = \frac{0.31}{\sqrt{d}} $$
+
+Let us go through the whole calculation for spring 1. $\sum(m_i-M_1)^2 = 11200$, so $$ e_n = 0.22 \cdot \sqrt{11200} = 23.28 $$ The actual value of the numberator is $ \sum (m_i-M)(x_i-X) = 356 $, so $$ \%e_n = \frac{23.28}{365} = 0.06378 $$
+
+Similarily, $ \sum(x_i-X)^2 = 11.325$, and hence
+$$ \%e_d = \frac{0.31}{\sqrt{11.325}} = 0.02737 $$
+
+This gives $ \%e = \sqrt{0.06378^2 + 0.02737^2} = 0.06940 $, and since the value of the slope is $s_1 = 31.43g/cm$, we get:
+
+$$ s_1 = (31.43 \pm 0.0694 \cdot 31.43) g/cm = (31.43 \pm 2.18) g/cm $$
+
+Proceeding with identical calculations, we obtain the following:
+$$ s_2 = (20.72 \pm 2.36) g/cm $$
+$$ s_3 = (162.78 \pm 44.93) g/cm $$
+$$ s_4 = (5.95 \pm 0.19) g/cm $$
+
+As discussed at the beginning of this section, the spring constant is simply slope times the gravitational constant, $g$. Since we want the slope in $kg/m$, we simply scale results in $g/cm$ by $\frac{1}{10} $. The spring constants are:
+
+$$ k_1 = (30.83 \pm 2.14) N/m$$
+$$ k_2 = (20.33 \pm 2.32) N/m $$ 
+$$ k_3 = (159.69 \pm 44.08) N/m $$
+$$ k_4 = (5.84 \pm 0.19) N/m $$
+
+\subsection{Normal Modes and Coupling Frequency}
+
+Our apparatus has 4 mounting locations for springs, each at a different distance from the hinge. We'll call this distance $l_1-l_4$, starting from the location closest to the hinge. Finally, total lenght of the pendulum is denoted by $L$.
+
+\begin{figure}[H]
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & Pendulum 1 & Pendulum 2 & Average \\
+\hline
+$l_1$ & 13 & 13.5 & 13.25 \\
+$l_2$ & 22.5 & 22.5 & 22.5 \\
+$l_3$ & 32 & 31 & 31.5 \\
+$l_4$ & 42.5 & 42 & 42.25 \\
+$L$ & 56.5 & 56 & 56.25 \\
+\hline
+\end{tabular}
+
+\end{figure}
+
+The mass of each pendulum is $ m = 2.938kg $.
+
+The angular frequency is hence, by (II.3), $$ \omega_0 = \sqrt{g/L} = (4.18 \pm 0.04)s^{-1} $$ Uncertainty was easily calculated, since relative error in $ \omega_0$ is half of relative error in $L$. 
+
+Now we can use (II.6) to find the angular frequency, $\omega$, in the case of the odd mode, for each combination of the spring constant and mounting position:
+
+\begin{figure}[H]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& Position 1 & Position 2 & Position 3 & Position 4 \\
+\hline
+Spring 1 & 4.32 & 4.56 & 4.90 & 5.41 \\
+\hline
+Spring 2 & 4.27 & 4.44 & 4.67 & 5.03 \\
+\hline
+Spring 3 & 4.85 & 5.90 & 7.18 & 8.88 \\
+\hline
+Spring 4 & 4.21 & 4.26 & 4.33 & 4.44 \\
+\hline
+\end{tabular}
+\caption{$\omega$ in $s^{-1}$}
+\end{figure}
+
+\subsection{Beat Frequency}
+Due to small coupling approximation assumptions, we've used spring 2 and 4 for this part, because they have the smallest spring constant $k$. 
+
+Using (II.7), we get the following theoretical values for beat frequencies:
+\begin{figure}[H]
+\begin{tabular}{|c|c|}
+\hline
+& Beat frequency/$s^{-1}$ \\
+\hline
+Spring 2 Position 1 & 0.092 $\pm$ 0.018 \\
+Spring 2 Position 2 & 0.265 $\pm$ 0.040 \\
+Spring 4 Position 1 & 0.026 $\pm$ 0.008 \\
+Spring 4 Position 2 & 0.076 $\pm$ 0.004 \\
+\hline
+\end{tabular}
+\caption{Theoretically predicted beat frequencies}
+\end{figure}
+
+Error is calculated by $$ \%\Delta\omega = \sqrt{(\% k)^2 + (2\% l)^2 + (\% \omega_0)^2 + (2 \% L)^2} $$
+
+For example, in the first case, Spring 2 Position 1, we'd have 
+
+$$ \%\Delta\omega = \sqrt{(\frac{2.32}{20.33})^2 + (\frac{2}{13.25})^2 + (\frac{0.04}{4.18})^2 + (\frac{2}{56.25})^2} = 0.1928 $$
+
+and hence
+
+$$ \Delta\omega = (0.092 \pm 0.1928 \cdot 0.092)s^{-1} = (0.092 \pm 0.018)s^{-1} $$
 \end{document}
